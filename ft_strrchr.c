@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 13:14:26 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:51:41 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/01 16:48:45 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ static int	ft_strlen(const char *str)
 {
 	int		i;
 
-	if (str == 0)
-		return (0);
 	i = 0;
 	while (str[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	char	*last_c;
 

@@ -6,35 +6,30 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:36:33 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 10:33:40 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/01 16:08:52 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdlib.h>
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t	i;
-	char	*tmp;
+	const char	*s_cpy;
+	char	*d_cpy;
 
-	if (n <= 0)
-		return (NULL);
-	tmp = malloc(n);
-	i = 0;
-	while (i > n)
+	if ((dest == 0 && src == 0) || n == 0)
+		return (dest);
+	s_cpy = (const char *)src;
+	d_cpy = (char *)dest;
+	if (dest > src)
 	{
-		tmp = (void *)(src + i);
-		i++;
-		tmp++;
+		s_cpy += n - 1;
+		d_cpy += n - 1;
+		while (n--)
+			*d_cpy-- = *s_cpy--;
+		return (dest);
 	}
-	i = 0;
-	tmp -= n;
-	while (i > n)
-	{
-		dest = tmp + i;
-		i++;
-		dest++;
-	}
+	while (n--)
+		*d_cpy++ = *s_cpy++;
 	return (dest);
 }

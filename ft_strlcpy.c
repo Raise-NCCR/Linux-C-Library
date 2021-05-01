@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 12:34:12 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:43:46 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/02 00:03:58 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static int	ft_strlen(const char *str)
 {
 	int		i;
 
-	if (str == 0)
-		return (0);
 	i = 0;
 	while (str[i] != '\0')
 		i++;
@@ -26,14 +24,18 @@ static int	ft_strlen(const char *str)
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t	i;
+	const char	*src_cpy;
 
-	i = 0;
-	while (src[i] != '\0' && i < size - 1)
+	src_cpy = src;
+	if (size != 0)
 	{
-		dest[i] = src[i];
-		i++;
+		while (--size > 0)
+		{
+			if ((*dest++ = *src_cpy++) == '\0')
+				break ;
+		}
+		if (size == 0)
+			*dest = '\0';
 	}
-	dest[i] = '\0';
 	return ((size_t)ft_strlen(src));
 }

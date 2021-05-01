@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:24:49 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 10:33:31 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/01 15:25:56 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t		i;
+	char	*d_cpy;
+	const char	*s_cpy;
 
-	i = 0;
-	while (i < n)
-	{
-		dest = (void *)(src + i);
-		i++;
-		dest++;
-	}
+	if (dest == 0 && src == 0)
+		return (dest);
+	d_cpy = (char *)dest;
+	s_cpy = (const char *)src;
+	while (n--)
+		*d_cpy++ = *s_cpy++;
 	return (dest);
 }

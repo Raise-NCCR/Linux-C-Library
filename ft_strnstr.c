@@ -6,44 +6,54 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 13:05:33 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:42:45 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/02 01:20:05 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-static int	ft_strcmp(const char *s1, const char *s2)
+static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	unsigned char	*s1_cpy;
+	unsigned char *s2_cpy;
 
-	i = 0;
-	while (s1[i] != '\0')
+	s1_cpy = (unsigned char *)s1;
+	s2_cpy = (unsigned char *)s2;
+	while (*s1_cpy != '\0' && n--)
 	{
-		if (!s2[i])
-			return ((int)s1[i]);
-		else if (s1[i] != s2[i])
-			return ((int)s1[i] - s2[i]);
-		i++;
+		if (*s1_cpy == *s2_cpy)
+		{
+			s1_cpy++;
+			s2_cpy++;
+			continue ;
+		}
+		return ((int)(*s1_cpy - *s2_cpy));
 	}
-	if (!s1[i] && s2[i])
-		return ((int)-s2[i]);
+	if (n > 0 && *s2_cpy != '\0')
+		return ((int)(0 - *s2_cpy));
 	return (0);
 }
 
-char	*strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	i;
+	size_t	little_len;
+	const char	*little_cpy;
 
 	if (*little == '\0')
 		return ((char *)big);
-	i = 0;
-	while (big[i] != '\0' && i < len)
+	little_cpy = little;
+	while (*little_cpy != '\0')
+		little_len++;
+	while (*big != '\0' && len--)
 	{
-		if (big[i] == little[0])
+		if (len < little_len)
+			return (NULL);
+		if (*big == *little)
 		{
-			if (ft_strcmp(&big[i], little) == 0)
-				return ((char *)little);
+			if (ft_strncmp(big, little, little_len) == 0)
+				return ((char *)big);
 		}
+		big++;
 	}
 	return ((char *) NULL);
 }

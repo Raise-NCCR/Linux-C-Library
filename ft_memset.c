@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:43:42 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/07 14:45:26 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/01 15:27:59 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	while (n > 0)
-	{
-		s = &c;
-		s++;
-		n--;
-	}
+	unsigned char	*s_cpy;
+
+	s_cpy = (unsigned char *)s;
+	while (n--)
+		*s_cpy++ = (unsigned char)c;
 	return (s);
 }

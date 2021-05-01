@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:22:46 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:54:23 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/01 12:47:49 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*dest;
 

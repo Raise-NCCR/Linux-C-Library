@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:13:54 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:46:46 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/01 15:32:28 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t		i;
+	char	*s_cpy;
 
-	i = 0;
-	if (n <= 0)
-		return ;
-	while (i < n)
-	{
-		s = "\0";
-		i++;
-		s++;
-	}
+	s_cpy = (char *)s;
+	while (n--)
+		*s_cpy++ = '\0';
 }

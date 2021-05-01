@@ -6,24 +6,28 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:11:57 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:52:42 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/02 01:25:25 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
-	unsigned int	i;
+	unsigned char	*s1_cpy;
+	unsigned char *s2_cpy;
 
-	i = 0;
-	while (s1[i] && i < n)
+	s1_cpy = (unsigned char *)s1;
+	s2_cpy = (unsigned char *)s2;
+	while (*s1_cpy != '\0' && n-- > 0)
 	{
-		if (!s2[i])
-			return (s1[i]);
-		else if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		if (*s1_cpy == *s2_cpy)
+		{
+			s1_cpy++;
+			s2_cpy++;
+			continue ;
+		}
+		return ((int)(*s1_cpy - *s2_cpy));
 	}
-	if (!s1[i] && s2[i])
-		return (-s2[i]);
+	if (n > 0 && *s2_cpy != '\0')
+		return ((int)(0 - *s2_cpy));
 	return (0);
 }

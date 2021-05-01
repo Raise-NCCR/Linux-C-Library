@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 12:10:48 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:54:00 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/02 01:00:16 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static int	ft_strlen(const char *str)
 {
 	int		i;
 
-	if (str == 0)
-		return (0);
 	i = 0;
 	while (str[i] != '\0')
 		i++;
@@ -26,21 +24,29 @@ static int	ft_strlen(const char *str)
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	i;
-	int		dest_len;
-	int		src_len;
+	const char	*src_cpy;
+	size_t	size_cpy;
 
-	dest_len = ft_strlen(dest);
-	src_len = ft_strlen(src);
-	i = (size_t)ft_strlen(dest);
-	while (src[i] != '\0' && i < size - 1)
+	src_cpy = src;
+	size_cpy = size;
+	if (size != 0)
 	{
-		dest[i] = src[i];
-		i++;
+		while (*dest++ != '\0')
+		{
+			if (--size_cpy == 0)
+				return ((size_t)(ft_strlen(src) + size));
+		}
+		dest--;
+		while (--size_cpy > 0)
+		{
+			if ((*dest++ = *src_cpy++) == '\0')
+				break ;
+		}
+		if (size_cpy == 0)
+		{
+			*dest = '\0';
+			return ((size_t)ft_strlen(src));
+		}
 	}
-	if (src[i] == '\0' || i == size - 1)
-		dest[i] = '\0';
-	else
-		dest[i - 1] = '\0';
-	return ((size_t)(dest_len + src_len));
+	return ((size_t)(ft_strlen(src) + size));
 }

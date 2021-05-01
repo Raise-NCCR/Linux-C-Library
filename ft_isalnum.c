@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:45:48 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:56:29 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/01 12:42:50 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_isalpha(int c)
 
 int	ft_isalnum(int c)
 {
-	if (ft_isalpha(c) != 0 || ft_isdigit(c) != 0)
+	if (ft_isalpha(c) == 1024 || ft_isdigit(c) == 1024)
 		return (1024);
 	else
 		return (0);

@@ -6,18 +6,16 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:00:21 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:44:14 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/01 16:22:02 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strlen(char *str)
 {
-	int		i;
+	int	count;
 
-	if (str == 0)
-		return (0);
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+	return (count);
 }

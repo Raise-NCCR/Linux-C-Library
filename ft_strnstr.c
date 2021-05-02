@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 13:05:33 by teguchi           #+#    #+#             */
-/*   Updated: 2021/05/02 13:28:18 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/02 14:56:48 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
 {
 	unsigned char	*s1_cpy;
-	unsigned char *s2_cpy;
+	unsigned char	*s2_cpy;
 
 	s1_cpy = (unsigned char *)s1;
 	s2_cpy = (unsigned char *)s2;
@@ -36,15 +36,15 @@ static int	ft_strncmp(const char *s1, const char *s2, unsigned int n)
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	little_len;
+	size_t		little_len;
 	const char	*little_cpy;
 
 	if (*little == '\0')
 		return ((char *)big);
 	if (len == 0)
 		return ((char *) NULL);
-	little_cpy = little;
 	little_len = 0;
+	little_cpy = little;
 	while (*little_cpy++ != '\0')
 		little_len++;
 	while (*big != '\0' && len)

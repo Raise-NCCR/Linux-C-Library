@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 12:10:48 by teguchi           #+#    #+#             */
-/*   Updated: 2021/05/02 01:00:16 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/02 12:35:34 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ static int	ft_strlen(const char *str)
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	const char	*src_cpy;
-	size_t	size_cpy;
+	const char	*src_cpy = src;
+	size_t		size_cpy;
 
-	src_cpy = src;
 	size_cpy = size;
 	if (size != 0)
 	{
@@ -39,7 +38,8 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 		dest--;
 		while (--size_cpy > 0)
 		{
-			if ((*dest++ = *src_cpy++) == '\0')
+			*dest = *src_cpy++;
+			if (*dest++ == '\0')
 				break ;
 		}
 		if (size_cpy == 0)

@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:22:46 by teguchi           #+#    #+#             */
-/*   Updated: 2021/05/01 12:47:49 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/02 14:07:29 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,25 @@
 
 static void	ft_bzero(void *s, size_t n)
 {
-	size_t		i;
+	char	*s_cpy;
 
-	i = 0;
-	while (i < n)
-	{
-		s = "\0";
-		i++;
-		s++;
-	}
+	s_cpy = (char *)s;
+	while (n--)
+		*s_cpy++ = '\0';
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*dest;
 
-	if (size <= 0)
-		return (NULL);
+	if (nmemb == 0 || size == 0)
+	{
+		nmemb = 1;
+		size = 1;
+	}
 	dest = malloc(size * nmemb);
-	ft_bzero(dest, size);
+	if (dest == 0)
+		return (dest);
+	ft_bzero(dest, nmemb * size);
 	return (dest);
 }

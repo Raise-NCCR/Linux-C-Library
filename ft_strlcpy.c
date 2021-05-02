@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 12:34:12 by teguchi           #+#    #+#             */
-/*   Updated: 2021/05/02 00:03:58 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/02 14:20:35 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	{
 		while (--size > 0)
 		{
-			if ((*dest++ = *src_cpy++) == '\0')
+			*dest = *src_cpy++;
+			if (*dest++ == '\0')
 				break ;
 		}
 		if (size == 0)

@@ -6,26 +6,24 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 13:21:38 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:53:48 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/03 01:06:04 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 
-static int	ft_strlen(const char *str)
+static int	ft_strlen(const char *s)
 {
-	int		i;
+	int	i;
 
-	if (str == 0)
-		return (0);
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-static int	is_in_set(char c, const char *set)
+static int	is_in_set(const char c, const char *set)
 {
 	while (*set != '\0')
 	{
@@ -38,28 +36,31 @@ static int	is_in_set(char c, const char *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
+	int		i;
 	char	*dest;
+	char	*dest_cpy;
 
-	dest = (char *)malloc(sizeof(char) * ft_strlen(s1));
-	if (dest == 0)
-		return ((char *) NULL);
-	i = 0;
 	while (*s1 != '\0')
 	{
 		if (is_in_set(*s1, set))
-		{
 			s1++;
-			continue ;
-		}
-		dest[i] = *s1;
-		i++;
+		else
+			break ;
 	}
-	i--;
-	while (is_in_set(dest[i], set))
+	i = ft_strlen(s1);
+	while (--i && is_in_set(s1[i], set))
+		;
+	dest = (char *)malloc(sizeof(char) * (++i + 1));
+	if (dest == 0)
+		return (dest);
+	if (i == 0)
 	{
-		dest[i] = '\0';
-		i--;
+		*dest = '\0';
+		return (dest);
 	}
-	return (dest);
+	dest_cpy = dest;
+	while (i--)
+		*dest++ = *s1++;
+	*dest = '\0';
+	return (dest_cpy);
 }

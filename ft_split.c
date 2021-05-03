@@ -6,13 +6,14 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:54:41 by teguchi           #+#    #+#             */
-/*   Updated: 2021/04/20 12:51:20 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/03 12:04:24 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-static int	ft_strlen(char *str)
+static int	ft_strlen(const char *str)
 {
 	int		i;
 
@@ -24,38 +25,9 @@ static int	ft_strlen(char *str)
 	return (i);
 }
 
-static int	check_str(char str, char *charset)
+static void	ft_strncpy(char *dest, const char *src, int n)
 {
-	int		s;
-
-	s = 0;
-	if (charset == 0)
-		return (1);
-	if (str == '\0')
-		return (0);
-	while (charset[s] != '\0')
-	{
-		if (str == charset[s])
-			return (1);
-		s++;
-	}
-	return (0);
-}
-
-static char	**initialize_dest(char *str)
-{
-	char	**dest;
-
-	if (str == 0)
-		return (0);
-	dest = (char **)malloc(ft_strlen(str) * ft_strlen(str) + 1);
-	dest[0] = (char *)malloc(ft_strlen(str) + 1);
-	return (dest);
-}
-
-static void	ft_strncpy(char *dest, char *src, int n)
-{
-	int	i;
+	int i;
 
 	i = -1;
 	while (++i < n)
@@ -63,28 +35,37 @@ static void	ft_strncpy(char *dest, char *src, int n)
 	dest[i] = '\0';
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(const char *s, char c)
 {
 	int		i;
 	int		t;
 	int		l;
 	char	**dest;
 
-	dest = initialize_dest(str);
+	dest = (char **)malloc(ft_strlen(s) * ft_strlen(s) + 1);
+	dest[0] = (char *)malloc(ft_strlen(s) + 1);
 	i = -1;
 	t = 0;
 	l = 0;
-	while (++i <= ft_strlen(str))
+	while (++i <= ft_strlen(s))
 	{
-		if ((check_str(str[i], charset) || str[i] == '\0') && l > 0)
+		if ((s[i] == c || s[i] == '\0') && l > 0)
 		{
-			ft_strncpy(dest[t], &str[i - l], l);
+			ft_strncpy(dest[t], &s[i - l], l);
 			l = 0;
-			dest[++t] = (char *)malloc(ft_strlen(str) + 1);
+			dest[++t] = (char *)malloc(ft_strlen(s) + 1);
+			if (dest[t] == 0)
+			{
+				while (t-- > -1)
+					free(dest[t]);
+				free(dest);
+				return (NULL);
+			}
 		}
-		if (!check_str(str[i], charset))
+		if (s[i] != c)
 			l++;
 	}
+	free(dest[t]);
 	dest[t] = 0;
 	return (dest);
 }

@@ -1,14 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/06 14:00:21 by teguchi           #+#    #+#             */
-/*   Updated: 2021/05/01 16:22:02 by teguchi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
@@ -18,4 +8,10 @@ int	ft_strlen(char *str)
 	while (str[count] != '\0')
 		count++;
 	return (count);
+}
+
+int main() {
+	int len = ft_strlen("abcde");
+	printf("%d", len);
+	return 0;
 }

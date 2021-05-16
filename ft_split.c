@@ -6,7 +6,7 @@
 /*   By: teguchi <raise1229@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 13:54:41 by teguchi           #+#    #+#             */
-/*   Updated: 2021/05/03 12:04:24 by teguchi          ###   ########.fr       */
+/*   Updated: 2021/05/03 12:49:57 by teguchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static void	ft_strncpy(char *dest, const char *src, int n)
 	while (++i < n)
 		dest[i] = src[i];
 	dest[i] = '\0';
+}
+
+static int	should_be_free(char **dest, int t)
+{
+	
 }
 
 char	**ft_split(const char *s, char c)
